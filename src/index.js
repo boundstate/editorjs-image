@@ -63,6 +63,7 @@ import { IconAddBorder, IconStretch, IconAddBackground, IconPicture } from '@cod
  * @property {object} [uploader] - optional custom uploader
  * @property {function(File): Promise.<UploadResponseFormat>} [uploader.uploadByFile] - method that upload image by File
  * @property {function(string): Promise.<UploadResponseFormat>} [uploader.uploadByUrl] - method that upload image by URL
+ * @property {function(string): string} [imageLoader] - method to resolve image URL
  */
 
 /**
@@ -150,6 +151,7 @@ export default class ImageTool {
       types: config.types || 'image/*',
       captionPlaceholder: this.api.i18n.t(config.captionPlaceholder || 'Caption'),
       buttonContent: config.buttonContent || '',
+      imageLoader: config.imageLoader || undefined,
       uploader: config.uploader || undefined,
       actions: config.actions || [],
     };

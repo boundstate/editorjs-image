@@ -154,6 +154,10 @@ export default class Ui {
      */
     const tag = /\.mp4$/.test(url) ? 'VIDEO' : 'IMG';
 
+    if (this.config.imageLoader) {
+      url = this.config.imageLoader(url);
+    }
+
     const attributes = {
       src: url,
     };

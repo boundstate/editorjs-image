@@ -83,6 +83,7 @@ Image Tool supports these configuration parameters:
 | buttonContent | `string` | Allows to override HTML content of «Select file» button |
 | uploader | `{{uploadByFile: function, uploadByUrl: function}}` | Optional custom uploading methods. See details below. |
 | actions | `array` | Array with custom actions to show in the tool's settings menu. See details below. |
+| imageLoader | `function` | Optional function for resolving the image URL. See details below. |
 
 Note that if you don't implement your custom uploader methods, the `endpoints` param is required.
 
@@ -278,6 +279,29 @@ var editor = EditorJS({
     }
   }
 
+  ...
+});
+```
+
+
+## Providing custom image loader
+
+If your images are served with a CDN (e.g. imgix) and you prefer to store relative URLs,
+you can configure an `imageLoader` function to return URLs to the theird-party image service.
+
+Example:
+
+```js
+import ImageTool from '@editorjs/image';
+
+var editor = EditorJS({
+  ...
+  tools: {
+    ...
+    image: {
+      class: ImageTool,
+      config: {
+        imageLoader: (src) => `https://example.com/${src}`
   ...
 });
 ```
